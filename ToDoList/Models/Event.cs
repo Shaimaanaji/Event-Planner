@@ -68,6 +68,71 @@ namespace ToDoList.Models
             }
         }
 
+
+
+
+        public static List<EventPlanner> FilterData(string t)
+        {
+            Open();
+            OracleTransaction CmdTrans = aOracleConnection.BeginTransaction(IsolationLevel.ReadCommitted);
+            try
+            {
+                return FilterData(CmdTrans, aOracleConnection,t);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public static List<EventPlanner> FilterData(OracleTransaction CmdTrans, OracleConnection aOracleConnection,string selectTitle)
+        {
+            List<EventPlanner> lst = new List<EventPlanner>();
+
+            try
+            {
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"select * from system.event where Title=:title";
+                cmd.CommandText = cmdText;
+                cmd.Parameters.Add("title", selectTitle);
+                cmd.ExecuteNonQuery();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string title = (dt.Rows[i]["Title"].ToString()); 
+                        var DATE = (dt.Rows[i]["CreateDate"].ToString());
+                        int id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
+                        string Location = dt.Rows[i]["Location"].ToString();
+                        string Desc = dt.Rows[i]["Description"].ToString();
+                        lst.Add(new EventPlanner() { Id = id, Title = title, CreateDate = DATE, Description = Desc, Location = Location });
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+
+
+
+
+
+
+
+
         public static void InsertData(EventPlanner ev)
         {
             Open();
@@ -153,10 +218,6 @@ namespace ToDoList.Models
 
         }
 
-
-
-
-
         public static void DeleteData(int id)
         {
             Open();
@@ -189,7 +250,6 @@ namespace ToDoList.Models
             cmd.Parameters.Add("id", Eid);   
             cmd.ExecuteNonQuery();
             CmdTrans.Commit();
-
         }
 
 

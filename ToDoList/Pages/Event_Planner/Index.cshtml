@@ -68,9 +68,14 @@
             </div>
 
               <div  class="me-2 col-8">
-              <select class=" form-control">
-                <option value="-1">Select option</option>
+                  <form method="get">
+                    <select asp-for="EventTile" asp-items="Model.lstEvents" class="" onchange="submit();" form-control">
+                <option value="-1" disabled>Select option</option>
              </select>
+
+                  
+                  </form>
+             
             </div>
 
               <div class="col ms-4  text_end ">
