@@ -10,8 +10,6 @@ namespace ToDoList.Models
 
         static dbAccess con;
         static OracleConnection aOracleConnection;
-
-
         public static List<EventPlanner> GetData()
         {
             Open();
@@ -68,9 +66,6 @@ namespace ToDoList.Models
             }
         }
 
-
-
-
         public static List<EventPlanner> FilterData(string t)
         {
             Open();
@@ -124,14 +119,6 @@ namespace ToDoList.Models
                 throw new Exception(ex.Message.ToString());
             }
         }
-
-
-
-
-
-
-
-
 
         public static void InsertData(EventPlanner ev)
         {
@@ -264,6 +251,7 @@ namespace ToDoList.Models
             cmd.ExecuteNonQuery();
             CmdTrans.Commit();
         }
+
 
 
         static void Open()
