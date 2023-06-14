@@ -1,0 +1,273 @@
+﻿@page
+@model ToDoList.Pages.Event_Planner.IndexModel
+@{
+}
+
+@*<div>
+    <div class="row mb-3">
+        <div class="col text-start">
+            <a onclick="ShowModelAddEdit('editModel')" class="btn btn-outline-primary px-4 py-2">  Add Event</a>
+
+        </div>
+        <div class="col-2 text-end">
+            <select class=" form-control">
+                <option value="-1">Select option</option>
+            </select>
+
+        </div>
+
+    </div>
+    <div>
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Events)
+                {
+                    <tr>
+                        <th>@item.Id</th>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item?.CreateDate</td>
+                        <td>@item.Location</td>
+                        <th scope="col"><button asp-route-id="@item.Id" onclick="ShowModel('editModel',@System.Text.Json.JsonSerializer.Serialize(item))" class="btn btn-success">Edit</button></th>
+                        <th scope="col">
+                            
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                <a class="d-inline-block btn btn-outline-danger  me-2" onclick="DeleteConFirm(this);"> Delete </a>
+                            </form>
+                        </th>
+                       
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>*@
+
+
+
+<section class="food_section layout_padding-bottom">
+    <div class="container">
+
+        <div class="row mb">
+            <div class="col text-start">
+                <a onclick="ShowModelAddEdit('editModel')" class="order_online">  Add Event</a>
+
+            </div>
+
+              <div  class="me-2 col-8">
+              <select class=" form-control">
+                <option value="-1">Select option</option>
+             </select>
+            </div>
+
+              <div class="col ms-4  text_end ">
+            <h2 style="color:#ffbe33">
+                Our Events
+            </h2>
+        </div>
+
+          
+
+        </div>
+ 
+
+      
+      
+        <div class="filters-content">
+            <div class="row grid">
+                @foreach (var item in @Model.Events)
+                {
+                   
+                    <div class="col-sm-6 col-lg-4 all ">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="~/images/3.jpg" class="img-fluid " />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @item.Title
+                                    </h5>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            @item?.CreateDate
+                                        </h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <button asp-route-id="@item.Id" onclick="ShowModel('editModel',@System.Text.Json.JsonSerializer.Serialize(item))" class=" order_online" type="submit"> Edit </button>
+                                        </div>
+                                        <div class="col-3">
+                                            <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                                <a onclick="DeleteConFirm(this);" class="order_online">
+                                                    Delete
+                                                </a>
+                                            </form>
+                                        </div>
+                                    
+                                    </div>
+
+                                       
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="btn-box">
+            <a href="">
+                View More
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<div class="modal fade" id="editModel" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLabel">Add </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="frmCRUD" method="post">
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                   @* <div class="form-group">
+                        <label asp-for="enevtPlann.Id"  class="control-label"></label>
+                        <input asp-for="enevtPlann.Id" id="Id" class="form-control" />
+                        <span asp-for="enevtPlann.Id" class="text-danger"></span>
+                    </div>*@
+                    <input asp-for="enevtPlann.Id" id="Id" class="form-control" hidden/>
+
+                    <div class="form-group">
+                        <label asp-for="enevtPlann.Title" class="control-label"></label>
+                        <input asp-for="enevtPlann.Title" id="Title" class="form-control" />
+                        <span asp-for="enevtPlann.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="enevtPlann.Description" class="control-label"></label>
+                        <input asp-for="enevtPlann.Description" id="Description" class="form-control" />
+                        <span asp-for="enevtPlann.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="enevtPlann.Location" class="control-label"></label>
+                        <input asp-for="enevtPlann.Location" id="Location" class="form-control" />
+                        <span asp-for="enevtPlann.Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="enevtPlann.CreateDate" class="control-label"></label>
+                        <input type="date" asp-for="enevtPlann.CreateDate" id="CreateDate" class="form-control" />
+                        <span asp-for="enevtPlann.CreateDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class=" order_online btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="ptnadd" asp-page-handler="Add"  class=" order_online" type="submit"> Add </button>
+                    <button type="submit" class=" order_online" asp-page-handler="Edit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        function ShowModelAddEdit(modelid) {
+            let modelElm = document.getElementById(modelid);
+            var myModal = new bootstrap.Modal(modelElm, {
+                keyboard: false
+            })
+
+            myModal.toggle()
+        }
+
+        function ShowModel(modelid, customer) {
+
+            let modelElm = document.getElementById(modelid);
+            const myModal = new bootstrap.Modal('#' + modelid, {
+                keyboard: false
+            })
+         
+            if (customer !== null) {
+                let date_event = new Date(customer.CreateDate);
+                date_event.setDate(date_event.getDate() + 1);
+                if (customer.CreateDate === null) {
+                    modelElm.querySelector('#CreateDate').valueAsDate = null;
+                }
+                else {
+                    modelElm.querySelector('#CreateDate').valueAsDate = date_event;
+                }
+                console.log(customer);
+                modelElm.querySelector('#Title').value = customer.Title;
+                modelElm.querySelector('#Description').value = customer.Description;
+                modelElm.querySelector('#Location').value = customer.Location;
+                //modelElm.querySelector('#CreateDate').value = customer.CreateDate;
+                modelElm.querySelector('#Id').value = customer.Id;
+
+            }
+         
+            myModal.show();
+        }
+
+
+        function DeleteConFirm(tagElm) {
+
+            let delform = tagElm.parentElement || null;
+            //alert(delform);
+            //return;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    if (delform !== null)
+                        delform.submit();
+
+                }
+
+            })
+
+        }
+
+    </script>
+}
+
