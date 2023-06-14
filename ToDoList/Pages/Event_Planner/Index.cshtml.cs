@@ -39,19 +39,24 @@ namespace ToDoList.Pages.Event_Planner
         }
         public async Task OnPostAdd()
         {
-          //  enevtPlann.Id = Event.GetData().Count() + 1;
-             Event.InsertData(enevtPlann);
+            EventsAll = Event.GetData();
+            lstEvents = EventsAll.Select(x => new SelectListItem() { Value = x.Title, Text = x.Title }).ToList();
+            Event.InsertData(enevtPlann);
             Events = Event.GetData();
             RedirectToPage("./Event_Planner/index");
         }
         public async Task OnPostEdit()
         {
+            EventsAll = Event.GetData();
+            lstEvents = EventsAll.Select(x => new SelectListItem() { Value = x.Title, Text = x.Title }).ToList();
             Event.UpdateData(enevtPlann);
             Events = Event.GetData();
             RedirectToPage("./Event_Planner/index");
         }
         public async Task OnPostDelete(int id)
         {
+            EventsAll = Event.GetData();
+            lstEvents = EventsAll.Select(x => new SelectListItem() { Value = x.Title, Text = x.Title }).ToList();
             Event.DeleteData(id);
             Events = Event.GetData();
             RedirectToPage("./Event_Planner/index");
