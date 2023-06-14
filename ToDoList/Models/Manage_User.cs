@@ -45,6 +45,19 @@ namespace ToDoList.Models
                 user.Id = Convert.ToInt32(dt.Rows[0]["seq"].ToString());
 
             }
+            OracleCommand checkCmd = aOracleConnection.CreateCommand();
+            checkCmd.Transaction = CmdTrans;
+            checkCmd.CommandType = CommandType.Text;
+            var checkCmdText = @"SELECT COUNT(*) FROM system.AppUser WHERE Email = :Email";
+            checkCmd.CommandText = checkCmdText;
+            checkCmd.Parameters.Add("Email", user.Email);
+            int emailCount = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+            if (emailCount > 0)
+            {
+               
+                return;
+            }
             {
                 OracleCommand cmd = aOracleConnection.CreateCommand();
                 cmd.Transaction = CmdTrans;

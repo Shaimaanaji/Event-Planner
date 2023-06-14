@@ -4,6 +4,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.Cookie.Name = "YourAppCookieName";
+    options.Cookie.HttpOnly = false;
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+    options.LoginPath = "/Manage/Login";
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+    options.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
@@ -15,16 +25,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    options.Cookie.Name = "YourAppCookieName";
-    options.Cookie.HttpOnly = false;
-    options.ExpireTimeSpan = TimeSpan.FromDays(1);
-    options.LoginPath = "/Mnage/Login";
-    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
-    options.SlidingExpiration = true;
-});
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
