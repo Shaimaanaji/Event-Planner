@@ -18,7 +18,10 @@
                         <h1 class="text-black">
                             Event Planner
                         </h1>
-
+                        <p class="text-black">
+                            Welcome to our website, where we provide exceptional event planning services to turn your visions into unforgettable experiences. 
+                            With a team of highly skilled and dedicated professionals, we are here to help you organize and execute flawless events, tailored to your specific needs and preferences.
+                        </p>
                         <div class="btn-box">
                             <a href="" class="btn1">
                                 Event Planner
@@ -322,81 +325,181 @@
         </div>
     </section>
 
+    <section class="event_section layout_padding-bottom">
+        <div class="container">
+
+            <div class="row mb">
+                <div class="col text-start">
+                    <a onclick="ShowModelAddEdit('editModel')" class="order_online">  Add Event</a>
+
+                </div>
+
+               
+
+                <div class="col ms-4  text_end ">
+                    <h2 style="color:#ffbe33">
+                        Our Events
+                    </h2>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <div class="filters-content">
+                <div class="row grid">
+                        <div class="col-sm-6 col-lg-4 all ">
+                            <div class="box">
+                                <div>
+                                    <div class="img-box">
+                                    <img src="~/images/7.jpg" />
+                                </div>
+                                    <div class="detail-box">
+                                        <h5>
+                                        al mashtal hotel
+
+                                        </h5>
+                                        <p>
+                                        Annual awards ceremony honoring industry excellence
+
+
+                                        </p>
+                                        <div class="options">
+                                            <h6>
+                                            6/1/2023 12:00:00 AM
+                                        </h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <button  class=" order_online" type="submit"> Edit </button>
+                                            </div>
+                                            <div class="col-3">
+                                          
+                                                    <a  class="order_online">
+                                                        Delete
+                                                    </a>
+                                           
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="filters-content">
+                <div class="row grid">
+                    <div class="col-sm-6 col-lg-4 all ">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="~/images/7.jpg" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        al mashtal hotel
+
+                                    </h5>
+                                    <p>
+                                        Annual awards ceremony honoring industry excellence
+
+
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            6/1/2023 12:00:00 AM
+                                        </h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <button class=" order_online" type="submit"> Edit </button>
+                                        </div>
+                                        <div class="col-3">
+
+                                            <a class="order_online">
+                                                Delete
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="filters-content">
+                <div class="row grid">
+                    <div class="col-sm-6 col-lg-4 all ">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="~/images/7.jpg" />
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        al mashtal hotel
+
+                                    </h5>
+                                    <p>
+                                        Annual awards ceremony honoring industry excellence
+
+
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            6/1/2023 12:00:00 AM
+                                        </h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <button class=" order_online" type="submit"> Edit </button>
+                                        </div>
+                                        <div class="col-3">
+
+                                            <a class="order_online">
+                                                Delete
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="">
+                    View More
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
 
 </div>
 
-
-
-@*    <script>
-        function getYear() {
-    var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    document.querySelector("#displayYear").innerHTML = currentYear;
-}
-
-getYear();
-
-
-// isotope js
-$(window).on('load', function () {
-    $('.filters_menu li').click(function () {
-        $('.filters_menu li').removeClass('active');
-        $(this).addClass('active');
-
-        var data = $(this).attr('data-filter');
-        $grid.isotope({
-            filter: data
-        })
-    });
-
-    var $grid = $(".grid").isotope({
-        itemSelector: ".all",
-        percentPosition: false,
-        masonry: {
-            columnWidth: ".all"
-        }
-    })
-});
-
-// nice select
-$(document).ready(function() {
-    $('select').niceSelect();
-  });
-
-/** google_map js **/
-function myMap() {
-    var mapProp = {
-        center: new google.maps.LatLng(40.712775, -74.005973),
-        zoom: 18,
-    };
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-}
-
-// client section owl carousel
-$(".client_owl-carousel").owlCarousel({
-    loop: true,
-    margin: 0,
-    dots: false,
-    nav: true,
-    navText: [],
-    autoplay: true,
-    autoplayHoverPause: true,
-    navText: [
-        '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-        '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-    ],
-    responsive: {
-        0: {
-            items: 1
-        },
-        768: {
-            items: 2
-        },
-        1000: {
-            items: 2
-        }
-    }
-});
-
-    </script>*@
 

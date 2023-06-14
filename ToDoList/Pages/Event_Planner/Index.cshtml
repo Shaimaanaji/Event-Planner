@@ -58,7 +58,7 @@
 
 
 
-<section class="food_section layout_padding-bottom">
+<section class="event_section layout_padding-bottom">
     <div class="container">
 
         <div class="row mb">
@@ -72,10 +72,7 @@
                     <select asp-for="EventTile" asp-items="Model.lstEvents" class="" onchange="submit();" form-control">
                 <option value="-1" disabled>Select option</option>
              </select>
-
-                  
                   </form>
-             
             </div>
 
               <div class="col ms-4  text_end ">
@@ -190,7 +187,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class=" order_online btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class=" close_btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button id="ptnadd" asp-page-handler="Add"  class=" order_online" type="submit"> Add </button>
                     <button type="submit" class=" order_online" asp-page-handler="Edit">Edit</button>
                 </div>

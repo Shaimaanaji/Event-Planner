@@ -39,7 +39,7 @@ namespace ToDoList.Pages.Event_Planner
         }
         public async Task OnPostAdd()
         {
-            enevtPlann.Id = Event.GetData().Count() + 1;
+          //  enevtPlann.Id = Event.GetData().Count() + 1;
              Event.InsertData(enevtPlann);
             Events = Event.GetData();
             RedirectToPage("./Event_Planner/index");

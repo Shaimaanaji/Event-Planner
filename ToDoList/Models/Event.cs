@@ -156,21 +156,34 @@ namespace ToDoList.Models
 
         public static void InsertData( OracleTransaction CmdTrans, OracleConnection aOracleConnection,EventPlanner e)
         {
-            //select EVENT_SEQ.nextval from dual
-            //insert into  system.event(Id,Description,LOCATION,TITLE,CreateDate)
-           // values(EVENT_SEQ.nextval, '777gg', 'dd', 'dd', sysdate)
-            OracleCommand cmd = aOracleConnection.CreateCommand();
-            cmd.Transaction = CmdTrans;
-            cmd.CommandType = CommandType.Text;
-            var cmdText = @"insert into  system.event(Id,Description,LOCATION,TITLE,CreateDate)
-             values (:id,:Description,:location,:Title,TO_DATE(:date_e, 'YYYY-MM-DD'))";
-            cmd.CommandText = cmdText;
-            cmd.Parameters.Add("id", e.Id);
-            cmd.Parameters.Add("Description", e.Description);
-            cmd.Parameters.Add("location", e.Location);
-            cmd.Parameters.Add("Title", e.Title);
-            cmd.Parameters.Add("date_e", e.CreateDate);
-            cmd.ExecuteNonQuery();
+           
+            {
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"select EVENT_SEQ.nextval as seq from dual";
+                cmd.CommandText = cmdText;
+                cmd.ExecuteNonQuery();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                e.Id = Convert.ToInt32(dt.Rows[0]["seq"].ToString());
+              
+            }
+            { 
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"insert into  system.event(Id,Description,LOCATION,TITLE,CreateDate)
+                 values (:id,:Description,:location,:Title,TO_DATE(:date_e, 'YYYY-MM-DD'))";
+                cmd.CommandText = cmdText;
+                cmd.Parameters.Add("id", e.Id);
+                cmd.Parameters.Add("Description", e.Description);
+                cmd.Parameters.Add("location", e.Location);
+                cmd.Parameters.Add("Title", e.Title);
+                cmd.Parameters.Add("date_e", e.CreateDate);
+                cmd.ExecuteNonQuery();
+            }
             CmdTrans.Commit();
         }
 

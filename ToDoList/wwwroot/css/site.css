@@ -23,6 +23,23 @@ html {
         background-color: #e69c00;
     }
 
+.close_btn {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #222831;
+    color: #ffffff;
+    border-radius: 45px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+}
+
+    .close_btn:hover {
+        background-color: #e69c00;
+/*        color: #222831;
+*/    }
+
+
 
 html {
   position: relative;
@@ -544,7 +561,7 @@ a:focus {
             transform: scale(1.1);
         }
 
-.food_section .filters_menu {
+.event_section .filters_menu {
     padding: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -558,18 +575,18 @@ a:focus {
     margin: 45px 0 20px 0;
 }
 
-    .food_section .filters_menu li {
+    .event_section .filters_menu li {
         padding: 7px 25px;
         cursor: pointer;
         border-radius: 25px;
     }
 
-        .food_section .filters_menu li.active {
+        .event_section .filters_menu li.active {
             background-color: #222831;
             color: #ffffff;
         }
 
-.food_section .box {
+.event_section .box {
     position: relative;
     margin-top: 25px;
     background-color: #ffffff;
@@ -580,7 +597,7 @@ a:focus {
     background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
 }
 
-    .food_section .box .img-box {
+    .event_section .box .img-box {
         background: #f1f2f3;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -591,35 +608,37 @@ a:focus {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        height: 215px;
+     /*   height: 200px;*/
         border-radius: 0 0 0 45px;
         margin: -1px;
+        overflow:hidden
+
     }
 
-        .food_section .box .img-box img {
+        .event_section .box .img-box img {
             max-width: 100%;
             max-height: 100%;
             -webkit-transition: all .2s;
             transition: all .2s;
         }
 
-    .food_section .box .detail-box {
+    .event_section .box .detail-box {
         padding: 25px;
     }
 
-        .food_section .box .detail-box h5 {
+        .event_section .box .detail-box h5 {
             font-weight: 600;
         }
 
-        .food_section .box .detail-box p {
+        .event_section .box .detail-box p {
             font-size: 15px;
         }
 
-        .food_section .box .detail-box h6 {
+        .event_section .box .detail-box h6 {
             margin-top: 10px;
         }
 
-    .food_section .box .options {
+    .event_section .box .options {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -628,7 +647,7 @@ a:focus {
         justify-content: space-between;
     }
 
-        .food_section .box .options a {
+        .event_section .box .options a {
             width: 40px;
             height: 40px;
             border-radius: 100%;
@@ -644,18 +663,18 @@ a:focus {
             align-items: center;
         }
 
-            .food_section .box .options a svg {
+            .event_section .box .options a svg {
                 width: 18px;
                 height: auto;
                 fill: #ffffff;
             }
 
-    .food_section .box:hover .img-box img {
+    .event_section .box:hover .img-box img {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
 
-.food_section .btn-box {
+.event_section .btn-box {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -665,7 +684,7 @@ a:focus {
     margin-top: 45px;
 }
 
-    .food_section .btn-box a {
+    .event_section .btn-box a {
         display: inline-block;
         padding: 10px 55px;
         background-color: #ffbe33;
@@ -676,7 +695,7 @@ a:focus {
         border: none;
     }
 
-        .food_section .btn-box a:hover {
+        .event_section .btn-box a:hover {
             background-color: #e69c00;
         }
 
