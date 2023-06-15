@@ -30,8 +30,6 @@ namespace ToDoList.Models
             }
 
         }
-
-
         public static void RegesterUser(OracleTransaction CmdTrans, OracleConnection aOracleConnection, User_Model user)
         {
 
@@ -82,10 +80,6 @@ namespace ToDoList.Models
             }
             CmdTrans.Commit();
         }
-
-
-
-
 
         public static void LoginUser(Login_Model user)
         {

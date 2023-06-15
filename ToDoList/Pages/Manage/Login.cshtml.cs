@@ -14,8 +14,6 @@ namespace ToDoList.Pages.Manage
 
         public void OnGet()
         {
-
-
         }
         public async Task<IActionResult> OnPost()
         {
@@ -26,8 +24,6 @@ namespace ToDoList.Pages.Manage
                 return RedirectToPage("/Index");
             }
             return RedirectToPage("/Index");
-
-
         }
 
     }

@@ -36,6 +36,42 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Event_Planner/Index">Events</a>
                         </li>
+
+
+                        <li onclick="loadNotification()" class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                <i class="bx bx-bell bx-sm"> </i>
+
+
+                                <span id="spanCountNotification" style="background-color:#222831" class="badge  rounded-pill badge-notifications">
+                                    <img src="~/images/notification-bell.png" style="width:25px" />
+                                </span>
+                            </a>
+                            <ul id="ParentUl" class="dropdown-menu dropdown-menu-end py-0">
+                                <li class="dropdown-menu-header border-bottom">
+                                    <div class="dropdown-header d-flex align-items-center py-3">
+                                        <h5 class="text-body mb-0 me-auto">Notification</h5>
+                                        <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read">
+                                            <i id="iconMakeReadAll" class="bx fs-4 bx-envelope-open"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="dropdown-notifications-list scrollable-container" style="overflow-y: auto;">
+                                    <ul id="divNotifications" class="list-group  list-group-flush">
+                                    </ul>
+                                </li>
+                                <li class="dropdown-menu-footer border-top">
+
+                                    <a asp-page="/Notifications/index" asp-area="Dashboard" class="dropdown-item d-flex justify-content-center p-3">
+                                        View all notifications
+
+                                    </a>
+
+
+
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
@@ -143,7 +179,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+@*    <script src="~/js/notification.js"></script>
+*@    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

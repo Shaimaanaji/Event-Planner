@@ -10,7 +10,44 @@
         <div class="bg-box">
             <img class="img-fluid  w-100 img1" src="~/images/event3.jpg" />
         </div>
+       <ul>
 
+
+            <li onclick="loadNotification()" class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    <i class="bx bx-bell bx-sm"> </i>
+
+
+                    <span id="spanCountNotification" style="background-color:#222831" class="badge  rounded-pill badge-notifications">
+                        <img src="~/images/notification-bell.png" style="width:25px" />
+                    </span>
+                </a>
+                <ul id="ParentUl" class="dropdown-menu dropdown-menu-end py-0">
+                    <li class="dropdown-menu-header border-bottom">
+                        <div class="dropdown-header d-flex align-items-center py-3">
+                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                            <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read">
+                                <i id="iconMakeReadAll" class="bx fs-4 bx-envelope-open"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown-notifications-list scrollable-container" style="overflow-y: auto;">
+                        <ul id="divNotifications" class="list-group  list-group-flush">
+                        </ul>
+                    </li>
+                    <li class="dropdown-menu-footer border-top">
+
+                        <a asp-page="/Notifications/index" asp-area="Dashboard" class="dropdown-item d-flex justify-content-center p-3">
+                            View all notifications
+
+                        </a>
+
+
+
+                    </li>
+                </ul>
+            </li>
+       </ul>
         <div class="container slider_section">
             <div class="row">
                 <div class="col">
@@ -27,16 +64,10 @@
                                 Event Planner
                             </a>
                         </div>
-                  
-                    
-                    
                     </div>
                 </div>
             </div>
         </div>
-
-
-
     </div>
     <section class="offer_section layout_padding-bottom">
         <div class="offer_container">
@@ -481,9 +512,96 @@
         </div>
     </section>
 
-
-
-
+    <section class="client_section layout_padding-bottom">
+        <div class="container">
+            <div class="heading_container heading_center psudo_white_primary mb_45">
+                <h2>
+                    What Says Our Customers
+                </h2>
+            </div>
+            <div class="carousel-wrap row ">
+                <div class="owl-carousel client_owl-carousel">
+                    <div class="item">
+                        <div class="box">
+                            <div class="detail-box">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                </p>
+                                <h6>
+                                    Moana Michell
+                                </h6>
+                                <p>
+                                    magna aliqua
+                                </p>
+                            </div>
+                            <div class="img-box">
+                                <img src="~/images/6.jpg" class="box-img img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <div class="detail-box">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                </p>
+                                <h6>
+                                    Mike Hamell
+                                </h6>
+                                <p>
+                                    magna aliqua
+                                </p>
+                            </div>
+                            <div class="img-box">
+                                <img src="~/images/2.jpg" class="box-img img-fluid " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="book_section layout_padding">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="form_container">
+                        <form action="">
+                            <div style="height:60px;">
+                            </div>
+                            <div class="heading_container">
+                                <h2>
+                                    Event A Table
+                                </h2>
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Your Name" />
+                            </div>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Phone Number" />
+                            </div>
+                            <div>
+                                <input type="email" class="form-control" placeholder="Your Email" />
+                            </div>
+                          
+                            <div>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="btn_box">
+                                <button>
+                                   Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <img src="~/images/req.svg" />
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 </div>

@@ -139,8 +139,6 @@ namespace ToDoList.Models
             }
 
         }
-
-
         public static void InsertData( OracleTransaction CmdTrans, OracleConnection aOracleConnection,EventPlanner e)
         {
            
@@ -173,9 +171,6 @@ namespace ToDoList.Models
             }
             CmdTrans.Commit();
         }
-
-
-
         public static void UpdateData(EventPlanner ev)
         {
             Open();
@@ -252,6 +247,115 @@ namespace ToDoList.Models
             CmdTrans.Commit();
         }
 
+
+
+
+        public static void RemiderUser(EventPlanner ev)
+        {
+            Open();
+            OracleTransaction CmdTrans = aOracleConnection.BeginTransaction(IsolationLevel.ReadCommitted);
+            try
+            {
+                RemiderUser(CmdTrans, aOracleConnection, ev);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+            finally
+            {
+                Close();
+            }
+
+        }
+        public static void RemiderUser(OracleTransaction CmdTrans, OracleConnection aOracleConnection, EventPlanner e)
+        {
+            int idReminder=0;
+            {
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"select Reminder_seq.nextval as reminder_seq from dual";
+                cmd.CommandText = cmdText;
+                cmd.ExecuteNonQuery();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                 idReminder = Convert.ToInt32(dt.Rows[0]["reminder_seq"].ToString());
+
+            }
+            {
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"insert into Notifications(Id,LOCATION,TITLE)
+                 values (:id,:location,:Title)";
+                cmd.CommandText = cmdText;
+                cmd.Parameters.Add("id", idReminder);
+                cmd.Parameters.Add("location", e.Location);
+                cmd.Parameters.Add("Title", e.Title);
+                cmd.ExecuteNonQuery();
+            }
+            CmdTrans.Commit();
+        }
+
+
+        public static List<Notification> GetNotification()
+        {
+            Open();
+            OracleTransaction CmdTrans = aOracleConnection.BeginTransaction(IsolationLevel.ReadCommitted);
+            try
+            {
+                return GetNotification(CmdTrans, aOracleConnection);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public static List<Notification> GetNotification(OracleTransaction CmdTrans, OracleConnection aOracleConnection)
+        {
+            List<Notification> lst = new List<Notification>();
+
+            try
+            {
+                OracleCommand cmd = aOracleConnection.CreateCommand();
+                cmd.Transaction = CmdTrans;
+                cmd.CommandType = CommandType.Text;
+                var cmdText = @"select * from Notifications";
+                cmd.CommandText = cmdText;
+                cmd.ExecuteNonQuery();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+                        string title = dt.Rows[i]["Title"].ToString();
+                        bool IsRead = (int.Parse(dt.Rows[i]["IsRead"].ToString())==0?true:false);
+                        int id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
+                        string Location = dt.Rows[i]["Location"].ToString();
+                      
+
+                        lst.Add(new Notification() { Id = id, Title = title, Location = Location,IsRead=IsRead });
+
+                    }
+                }
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
 
 
         static void Open()

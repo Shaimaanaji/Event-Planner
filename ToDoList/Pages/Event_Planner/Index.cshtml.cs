@@ -25,6 +25,8 @@ namespace ToDoList.Pages.Event_Planner
             EventsAll = Event.GetData();
             lstEvents = EventsAll.Select(x => new SelectListItem() { Value = x.Title, Text = x.Title }).ToList();
 
+      
+
             if (EventTile == "")
             {          
                 Events = Event.GetData();
