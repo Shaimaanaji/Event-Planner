@@ -14,8 +14,16 @@ namespace ToDoList.Pages.Manage
 
         public async Task<IActionResult> OnPost()
         {
-            Manage_User.RegesterUser(input);
-          return  RedirectToPage("/Index");
+         
+
+            if (ModelState.IsValid)
+            {
+                Manage_User.RegesterUser(input);
+                return RedirectToPage("/Index");
+            }
+             return RedirectToPage("/Index");
+
+
         }
     }
 }
